@@ -20,7 +20,7 @@ Detalles y configuración para otros SO [aquí](https://minikube.sigs.k8s.io/doc
 En su forma más simple el ejecutar un contenedor con cualquiera de estas imágenes nos iniciará una shell de Groovy como para trabajar ahí dentro.
 
 ```console
-docker run --rm -it groovy:latest groovy //
+docker run --rm -it groovy:latest groovy
 ```
 En este momento estás ejecutando un contenedor de docker con groovy instalado y con todas las características de cualquier contenedor: network, volúmenes, incluirlo en un docker-compose, etc.
 
@@ -34,24 +34,29 @@ docker run --rm -e varprueba=test -it groovy:latest groovy -e "println System.ge
 
 Si el comando se ejecuta correctamente deberías ver en consola las variables de entorno propias del contenedor incluida la que proporcionamos por argumento (varprueba). Por ejemplo HOSTNAME indicará el nombre que le ha asignado docker a tu imagen (y que no encontrarás después porque le hemos indicado con el argumento rm que la elimine al finalizar)
 
+## Ejecución Script Groovy básico
 
-Minikube puede utilizar distintos drivers para resolver la virtualización necesaria para levantar el clúster. Por defecto, si Docker está instalado en el sistema, ulitiza ese driver. Si no funciona bien se pueden probar otras opciones, como por ejemplo VirtualBox (que debe estar instalado, por supuesto). En tal caso, el comando sería el siguiente:
+Una de las características propias de Docker es permitirte montar un directorio del host como si fuera propio del contenedor, de tal forma que pueda leer/escribir en el mismo. Una vez finalizada la prueba eliminaremos el contenedor.
+
+De aquí en adelante será necesario tener descargados los scripts subidos al repo actual en un directorio local.
+A continuación aprovecharemos la característica propia de Docker de permitirnos montar un directorio del host como si fuera propio del contenedor, de forma tal que este pueda leer/escribir en el mismo. Una vez finalizada la prueba eliminaremos el contenedor gracias al parámetro --rm.
+
+Para ello nos descargamos el script /scripts//DockerBasico.groovy en un directorio de nuestra máquina y ejecutamos desde ese directorio:
+
+```console
+docker run --rm -v "$PWD":/home/groovy/scripts -w /home/groovy/scripts groovy:latest groovy tiposBasicos.groovy
+```
+Siguiendo la salida de este script podemos ver la forma de trabajar de Groovy con números, cadenas, closures, otros tipos de datos y el manejo de estructuras de control.
+
+## Ejecución Script .Groovy instanciando CliBuilder
+
+```console
+docker run --rm -v "$PWD":/home/groovy/scripts -w /home/groovy/scripts groovy:latest groovy cliBuilderEjemplo.groovy -d
+```
+
+Acá puede verse en acción CliBuilder, clase del package util Groovy que asiste en el procesamiento de los argumentos que se pasan por la línea de comando (permitiendo hacer que sean más explícitos).
+
 
 ```bash
 minikube start --driver=virtualbox
 ```
-
-Para ver que todo quedó funcionando bien:
-
-```console
-# minikube status
-minikube
-type: Control Plane
-host: Running
-kubelet: Running
-apiserver: Running
-kubeconfig: Configured
-```
-
-También para verificar la instalación y contar con una UI web donde ver los recursos del clúster, podemos ejecutar lo siguiente:
-
