@@ -1,2 +1,2 @@
 # groovy-tutorial
-Tutorial for Groovy with Official Groovy Docker Image
+Tutorial for Groovy through Official Groovy Docker Image
