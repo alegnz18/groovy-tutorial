@@ -30,7 +30,7 @@ En el siguiente ejemplo vamos a comprobar que el código se ejecuta en un conten
 
 ```console
 docker run --rm -e varprueba=test -it groovy:latest groovy -e "println System.getenv().each{println it}"
-...
+```
 
 Si el comando se ejecuta correctamente deberías ver en consola las variables de entorno propias del contenedor incluida la que proporcionamos por argumento (varprueba). Por ejemplo HOSTNAME indicará el nombre que le ha asignado docker a tu imagen (y que no encontrarás después porque le hemos indicado con el argumento rm que la elimine al finalizar)
 
