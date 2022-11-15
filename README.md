@@ -48,7 +48,7 @@ docker run --rm -v "$PWD":/home/groovy/scripts -w /home/groovy/scripts groovy:la
 ```
 Siguiendo la salida de este script podemos ver la forma de trabajar de Groovy con números, cadenas, closures, otros tipos de datos y el manejo de estructuras de control.
 
-## Ejecución Script .Groovy instanciando CliBuilder
+## Ejecución Script Groovy instanciando CliBuilder
 
 ```console
 docker run --rm -v "$PWD":/home/groovy/scripts -w /home/groovy/scripts groovy:latest groovy cliBuilderEjemplo.groovy -d
