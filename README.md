@@ -19,7 +19,7 @@ Detalles y configuración para otros SO [aquí](https://minikube.sigs.k8s.io/doc
 
 En su forma más simple el ejecutar un contenedor con cualquiera de estas imágenes nos iniciará una shell de Groovy como para trabajar ahí dentro.
 
-```bash
+```console
 docker run --rm -it groovy:latest groovy //
 ```
 En este momento estás ejecutando un contenedor de docker con groovy instalado y con todas las características de cualquier contenedor: network, volúmenes, incluirlo en un docker-compose, etc.
