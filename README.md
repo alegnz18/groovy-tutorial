@@ -38,25 +38,59 @@ Si el comando se ejecuta correctamente deberías ver en consola las variables de
 
 Una de las características propias de Docker es permitirte montar un directorio del host como si fuera propio del contenedor, de tal forma que pueda leer/escribir en el mismo. Una vez finalizada la prueba eliminaremos el contenedor.
 
-De aquí en adelante será necesario tener descargados los scripts subidos al repo actual en un directorio local.
-A continuación aprovecharemos la característica propia de Docker de permitirnos montar un directorio del host como si fuera propio del contenedor, de forma tal que este pueda leer/escribir en el mismo. Una vez finalizada la prueba eliminaremos el contenedor gracias al parámetro --rm.
-
-Para ello nos descargamos el script /scripts//DockerBasico.groovy en un directorio de nuestra máquina y ejecutamos desde ese directorio:
+De aquí en adelante será necesario tener descargados los scripts subidos al repo actual en un directorio local; en este primero caso, TiposBasicos.groovy
 
 ```console
-docker run --rm -v "$PWD":/home/groovy/scripts -w /home/groovy/scripts groovy:latest groovy tiposBasicos.groovy
+docker run --rm -v "$PWD":/home/groovy/scripts -w /home/groovy/scripts groovy:latest groovy TiposBasicos.groovy
 ```
 Siguiendo la salida de este script podemos ver la forma de trabajar de Groovy con números, cadenas, closures, otros tipos de datos y el manejo de estructuras de control.
 
-## Ejecución Script Groovy instanciando CliBuilder
+## Ejecución Script Groovy  - Declaración de Closures
+
+Script con diferentes ejemplos de Closures y sus invocaciones.
 
 ```console
-docker run --rm -v "$PWD":/home/groovy/scripts -w /home/groovy/scripts groovy:latest groovy cliBuilderEjemplo.groovy -d
+docker run --rm -v "$PWD":/home/groovy/scripts -w /home/groovy/scripts groovy:latest groovy ClosuresEjemplo.groovy
 ```
+
+## Ejecución Script Groovy instanciando CliBuilder
 
 Acá puede verse en acción CliBuilder, clase del package util Groovy que asiste en el procesamiento de los argumentos que se pasan por la línea de comando (permitiendo hacer que sean más explícitos).
 
-
-```bash
-minikube start --driver=virtualbox
+```console
+docker run --rm -v "$PWD":/home/groovy/scripts -w /home/groovy/scripts groovy:latest groovy CliBuilderEjemplo.groovy -d
 ```
+
+## Compilación de Clase Groovy
+
+En caso de necesitar compilar nuestros programas Groovy, utilizaremos una sentencia en línea decomandos llamada groovyc.
+En este ejemplo vamos a compilar la clase Animal (archivo Animal.groovy).
+
+```console
+docker run --rm -v "$PWD":/home/groovy/scripts -w /home/groovy/scripts groovy:latest groovyc -d classes Animal.groovy 
+```
+El parámetro -d le indica a groovyc que debe crear un nuevo directorio donde alojar el/los ejecutable/s.
+El número de archivos generados dependerá del contenido del propio script, de la misma forma que sucede cuando
+compilamos un archivo en Java, en este caso será solo uno de nombre Animal.class
+
+## Instanciando clases en un script
+
+El próximo script instancia una serie de clases y muestra las relaciones de herencia entre las mismas y la forma de implementar interfases.
+
+```console
+docker run --rm -v "$PWD":/home/groovy/scripts -w /home/groovy/scripts groovy:latest groovy POOEjemplo.groovy
+```
+
+## Getters y setters con una particularidad
+
+El próximo script instancia una clase cuya declaración está incluída dentro del mismo archivo y en donde la misma clase duplica el valor de su única
+propiedad cuando se invoca por los métodos tradicionales (bien mediante el método get o mediante el operador ..
+
+muestra que es posible cambiar el comportamiento del método get y asimismo acceder al valor original de la variable.
+
+```console
+docker run --rm -v "$PWD":/home/groovy/scripts -w /home/groovy/scripts groovy:latest groovy DobleValorEjemplo.groovy
+```
+Para permitirnos recuperar el valor original de la propiedad vemos que Groovy introduce el operador .@
+
+
