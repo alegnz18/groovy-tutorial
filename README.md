@@ -1,6 +1,7 @@
 English? [Here](README.md)
 
 # groovy-tutorial
+
 Tutorial de Groovy usando la imagen de Docker Groovy oficial
 
 (basado en [este tutorial](https://groovy-lang.gitlab.io/101-scripts/docker/basico.html) )
@@ -12,16 +13,21 @@ Groovy cuenta desde hace un tiempo con imágenes oficiales, una para cada versi�
 Tener instalado Docker en tu sistema.
 Las imágenes se pueden encontrar en el repo oficial de docker https://hub.docker.com/_/groovy/
 
-
-Detalles y configuración para otros SO [aquí](https://minikube.sigs.k8s.io/docs/start/).
-
 ## GroovyShell
 
-En su forma más simple el ejecutar un contenedor con cualquiera de estas imágenes nos iniciará una shell de Groovy como para trabajar ahí dentro.
+En su forma más simple podemos ejecutar un contenedor con cualquiera de estas imágenes y con la ayuda del comando `groovysh` nos iniciará una shell de Groovy como para trabajar ahí dentro.
 
 ```console
-docker run --rm -it groovy:latest groovy
+# docker run --rm -it groovy:latest groovysh
+Groovy Shell (3.0.13, JVM: 17.0.5)
+Type ':help' or ':h' for help.
+groovy:000> println "hola mundo"
+hola mundo
+===> null
 ```
+
+(ctrl-c para salir)
+
 En este momento estás ejecutando un contenedor de docker con groovy instalado y con todas las características de cualquier contenedor: network, volúmenes, incluirlo en un docker-compose, etc.
 
 ## Ejecución código Groovy desde línea de comando
@@ -36,16 +42,17 @@ Si el comando se ejecuta correctamente deberías ver en consola las variables de
 
 ## Ejecución Script Groovy básico
 
-Una de las características propias de Docker es permitirte montar un directorio del host como si fuera propio del contenedor, de tal forma que pueda leer/escribir en el mismo. Una vez finalizada la prueba eliminaremos el contenedor.
+Una de las características propias de Docker es permitirte (con el parámetro `-v`) montar un directorio del host como si fuera propio del contenedor, de tal forma que pueda leer/escribir en el mismo. Con al parámetro `--rm`, una vez finalizada la prueba eliminaremos el contenedor.
 
 De aquí en adelante será necesario tener descargados los scripts subidos al repo actual en un directorio local; en este primero caso, TiposBasicos.groovy
 
 ```console
 docker run --rm -v "$PWD":/home/groovy/scripts -w /home/groovy/scripts groovy:latest groovy TiposBasicos.groovy
 ```
+
 Siguiendo la salida de este script podemos ver la forma de trabajar de Groovy con números, cadenas, closures, otros tipos de datos y el manejo de estructuras de control.
 
-## Ejecución Script Groovy  - Declaración de Closures
+## Ejecución Script Groovy - Declaración de Closures
 
 Script con diferentes ejemplos de Closures y sus invocaciones.
 
@@ -63,13 +70,14 @@ docker run --rm -v "$PWD":/home/groovy/scripts -w /home/groovy/scripts groovy:la
 
 ## Compilación de Clase Groovy
 
-En caso de necesitar compilar nuestros programas Groovy, utilizaremos una sentencia en línea decomandos llamada groovyc.
+En caso de necesitar compilar nuestros programas Groovy, utilizaremos una sentencia en línea decomandos llamada `groovyc`.
 En este ejemplo vamos a compilar la clase Animal (archivo Animal.groovy).
 
 ```console
-docker run --rm -v "$PWD":/home/groovy/scripts -w /home/groovy/scripts groovy:latest groovyc -d classes Animal.groovy 
+docker run --rm -v "$PWD":/home/groovy/scripts -w /home/groovy/scripts groovy:latest groovyc -d classes Animal.groovy
 ```
-El parámetro -d le indica a groovyc que debe crear un nuevo directorio donde alojar el/los ejecutable/s.
+
+El parámetro `-d` le indica a groovyc que debe crear un nuevo directorio donde alojar el/los ejecutable/s.
 El número de archivos generados dependerá del contenido del propio script, de la misma forma que sucede cuando
 compilamos un archivo en Java, en este caso será solo uno de nombre Animal.class
 
@@ -91,6 +99,5 @@ muestra que es posible cambiar el comportamiento del método get y asimismo acce
 ```console
 docker run --rm -v "$PWD":/home/groovy/scripts -w /home/groovy/scripts groovy:latest groovy DobleValorEjemplo.groovy
 ```
-Para permitirnos recuperar el valor original de la propiedad vemos que Groovy introduce el operador .@
 
-
+Para permitirnos recuperar el valor original de la propiedad vemos que Groovy introduce el operador `.@`
