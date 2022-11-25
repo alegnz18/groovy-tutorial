@@ -50,7 +50,7 @@ De aquí en adelante será necesario tener descargados los scripts subidos al re
 docker run --rm -v "$PWD":/home/groovy/scripts -w /home/groovy/scripts groovy:latest groovy TiposBasicos.groovy
 ```
 
-Siguiendo la salida de este script podemos ver la forma de trabajar de Groovy con números, cadenas, closures, otros tipos de datos y el manejo de estructuras de control.
+Siguiendo la salida de este script podemos ver la forma de trabajar en Groovy con números, cadenas, closures, otros tipos de datos y el manejo de estructuras de control.
 
 ## Ejecución Script Groovy - Declaración de Closures
 
@@ -62,7 +62,8 @@ docker run --rm -v "$PWD":/home/groovy/scripts -w /home/groovy/scripts groovy:la
 
 ## Ejecución Script Groovy instanciando CliBuilder
 
-Acá puede verse en acción CliBuilder, clase del package util Groovy que asiste en el procesamiento de los argumentos que se pasan por la línea de comando (permitiendo hacer que sean más explícitos).
+Para tomar argumentos que se pasan por la línea de comandos puede usarse la variable args implícita en el script (array de String que contiene los parámetros que se pasan tras el nombre del archivo).
+Para permitir que dichos parámetros sean más explícitos podemos hacer uso de la clase CliBuilder, clase del package util Groovy que asiste en el procesamiento de dichos argumentos.
 
 ```console
 docker run --rm -v "$PWD":/home/groovy/scripts -w /home/groovy/scripts groovy:latest groovy CliBuilderEjemplo.groovy -d
@@ -92,9 +93,9 @@ docker run --rm -v "$PWD":/home/groovy/scripts -w /home/groovy/scripts groovy:la
 ## Getters y setters con una particularidad
 
 El próximo script instancia una clase cuya declaración está incluída dentro del mismo archivo y en donde la misma clase duplica el valor de su única
-propiedad cuando se invoca por los métodos tradicionales (bien mediante el método get o mediante el operador ..
+propiedad cuando se invoca por los métodos tradicionales (bien mediante el método get o mediante el operador ..)
 
-muestra que es posible cambiar el comportamiento del método get y asimismo acceder al valor original de la variable.
+Muestra que es posible cambiar el comportamiento del método get y asimismo acceder al valor original de la variable.
 
 ```console
 docker run --rm -v "$PWD":/home/groovy/scripts -w /home/groovy/scripts groovy:latest groovy DobleValorEjemplo.groovy
