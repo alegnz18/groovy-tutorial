@@ -1,13 +1,13 @@
 
 class Perro extends Animal{
-  def duenio;
+  def dueño;
  
   // Constructor
-  def Perro(nombre, sonido, duenio){
+  def Perro(nombre, sonido, dueño){
  
     // Llama al constructor de Animal
     super(nombre, sonido);
-    this.duenio = duenio;
+    this.dueño = dueño;
   }
  
   // Sobreescribe el método hacerSonido()
