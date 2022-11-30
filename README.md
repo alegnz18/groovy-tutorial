@@ -57,7 +57,7 @@ Si el comando se ejecuta correctamente deberías ver en consola las variables de
 
 ## Ejecución Script Groovy básico
 
-Una de las características propias de Docker es permitirte (con el parámetro `-v`) montar un directorio del host como si fuera propio del contenedor, de tal forma que pueda leer/escribir en el mismo. Con al parámetro `--rm`, una vez finalizada la prueba eliminaremos el contenedor.
+Una de las características propias de Docker es permitirte (con el parámetro `-v`) montar un directorio del host como si fuera propio del contenedor, de tal forma que pueda leer/escribir en el mismo. Con el parámetro `--rm`, una vez finalizada la prueba eliminaremos el contenedor.
 
 De aquí en adelante será necesario tener descargados los scripts subidos al repo actual en un directorio local; en este primero caso, TiposBasicos.groovy
 
