@@ -1,7 +1,7 @@
 
 import groovy.transform.ToString;
  
-// Annotation para crear el metodo ToString para la clase
+// Annotation para asistir en la creacion del metodo ToString para la clase en forma simplificada
 @ToString(includeNames=true, includeFields=true)
 
 class Animal {
