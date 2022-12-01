@@ -31,7 +31,13 @@ def quintetoInicial = { base, escolta, alero, alapivot, pivot ->
 quintetoInicial "Calderón", "Navarro", "Jiménez", "Garbajosa", "Pau Gasol"
 
 println "\nITERANDO EN LISTAS"
-[1,2,3].collect { it * 2; println it}
+/* Metodo collect, itera una lista y va ejecutando el closure para cada elemnento 
+a medida y grabandolos en una segunda lista */
+def lst = [1,2,3,4];
+def nuevalst = [];
+nuevalst = lst.collect {elemento -> return elemento * elemento}
+println(lst);
+println(nuevalst);
 
 println "\nCLOSURES Y MAPAS"
 //defino el mapa/diccionario

@@ -83,7 +83,7 @@ lista.eachWithIndex{ ele, idx ->
     println "posicion $idx, elemento $ele"
 }
 
-//Metodo que itera una coleccion conviertiendo cada
+//Metodo que itera una coleccion convirtiendo cada
 // elemento en otro usando el closure como transformador
 lista = ['a','b','c','d']
 def nuevaLista = []
