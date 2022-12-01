@@ -97,9 +97,9 @@ El parámetro `-d` le indica a groovyc que debe crear un nuevo directorio donde 
 El número de archivos generados dependerá del contenido del propio script, de la misma forma que sucede cuando
 compilamos un archivo en Java, en este caso será solo uno de nombre Animal.class
 
-## Instanciando clases en un script
+## Instanciando clases
 
-El próximo script instancia una serie de clases y muestra las relaciones de herencia entre las mismas y la forma de implementar interfases.
+El próximo ejemplo instancia una serie de clases y muestra las relaciones de herencia entre las mismas y la forma de implementar interfases.
 
 ```console
 # docker run --rm -v "$PWD":/home/groovy/scripts -w /home/groovy/scripts groovy:latest groovy POOEjemplo.groovy
@@ -107,8 +107,7 @@ El próximo script instancia una serie de clases y muestra las relaciones de her
 
 ## Getters y setters con una particularidad
 
-El próximo script instancia una clase cuya declaración está incluída dentro del mismo archivo y en donde la misma clase duplica el valor de su única
-propiedad cuando se invoca por los métodos tradicionales (bien mediante el método get o mediante el operador ..)
+En el siguiente ejemplo se instancia una clase cuya declaración está incluída dentro del mismo archivo y en donde la misma clase duplica el valor de su única propiedad cuando se invoca por los métodos tradicionales (bien mediante el método get o mediante el operador ..)
 
 Muestra que es posible cambiar el comportamiento del método get y asimismo acceder al valor original de la variable.
 
